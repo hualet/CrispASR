@@ -781,7 +781,7 @@ endif()
 # own hand-rolled ggml graph builders and intentionally do NOT link this
 # target; they stay free of the per-architecture llama-model code.
 # ---------------------------------------------------------------------------
-set(LLAMA_CORE_DIR ${CMAKE_SOURCE_DIR}/examples/talk-llama)
+set(LLAMA_CORE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../examples/talk-llama)
 file(GLOB LLAMA_CORE_MODELS CONFIGURE_DEPENDS ${LLAMA_CORE_DIR}/models/*.cpp)
 add_library(crispasr-llama-core STATIC
             ${LLAMA_CORE_DIR}/llama.cpp
@@ -816,8 +816,10 @@ add_library(crispasr-llama-core STATIC
 # libcrispasr) sees llama.h, but the header is NOT installed — only the
 # `crispasr_chat_*` ABI in include/crispasr_chat.h is.
 target_include_directories(crispasr-llama-core PUBLIC ${LLAMA_CORE_DIR})
+target_include_directories(crispasr-lib PRIVATE ${LLAMA_CORE_DIR})
 target_compile_features   (crispasr-llama-core PUBLIC cxx_std_17)
 target_link_libraries     (crispasr-llama-core PUBLIC ggml ggml-base Threads::Threads)
+target_link_libraries     (crispasr-lib PRIVATE crispasr-llama-core)
 set_target_properties(crispasr-llama-core PROPERTIES
     POSITION_INDEPENDENT_CODE ON
     # Hide llama.cpp's C ABI from libcrispasr's export table — chat.cpp
@@ -2060,21 +2062,10 @@ endif()
 # `target_link_libraries(crispasr-lib PUBLIC <target>)` below, (3) add the
 # `crispasr_<backend>_*` wrappers to crispasr_c_api.cpp.
 # ---------------------------------------------------------------------------
-if (TARGET nemotron)
-    target_link_libraries(crispasr-lib PUBLIC nemotron)
-endif()
-if (TARGET parakeet)
-    target_link_libraries(crispasr-lib PUBLIC parakeet)
-endif()
-if (TARGET canary)
-    target_link_libraries(crispasr-lib PUBLIC canary)
-endif()
-if (TARGET lfm2_audio)
-    target_link_libraries(crispasr-lib PUBLIC lfm2_audio)
-endif()
 if (TARGET qwen3_asr)
     target_link_libraries(crispasr-lib PUBLIC qwen3_asr)
 endif()
+if(NOT CRISPASR_QWEN3_ONLY)
 if (TARGET higgs_stt)
     target_link_libraries(crispasr-lib PUBLIC higgs_stt)
 endif()
@@ -2292,18 +2283,9 @@ if (TARGET crisp_punc)
 elseif (TARGET fireredpunc)
     target_link_libraries(crispasr-lib PUBLIC fireredpunc)
 endif()
+endif()
 if (TARGET truecaser AND NOT TARGET crisp_truecase)
     target_link_libraries(crispasr-lib PUBLIC truecaser)
-endif()
-if (TARGET crisp_truecase)
-    target_link_libraries(crispasr-lib PUBLIC crisp_truecase)
-else()
-    if (TARGET truecaser_crf)
-        target_link_libraries(crispasr-lib PUBLIC truecaser_crf)
-    endif()
-    if (TARGET truecaser_lstm)
-        target_link_libraries(crispasr-lib PUBLIC truecaser_lstm)
-    endif()
 endif()
 if (TARGET pcs AND NOT TARGET crisp_punc)
     target_link_libraries(crispasr-lib PUBLIC pcs)
@@ -2333,13 +2315,7 @@ endif()
 # Pyannote segmentation is not a backend; it's consumed by
 # crispasr_diarize.cpp for the "pyannote" method. Still needs linking in
 # so the native diarizer's symbols resolve at libcrispasr load time.
-if (TARGET pyannote-seg)
-    target_link_libraries(crispasr-lib PUBLIC pyannote-seg)
-endif()
 # Silero LID engine used by crispasr_lid.cpp's native Silero path.
-if (TARGET silero-lid)
-    target_link_libraries(crispasr-lib PUBLIC silero-lid)
-endif()
 # CLD3 text-LID — sibling of lid-fasttext, routed via the auto-routing
 # text-LID dispatcher in src/text_lid_dispatch.cpp.
 if (TARGET lid-cld3 AND NOT TARGET crisp_lid)
@@ -2355,9 +2331,6 @@ endif()
 # absorbed into libcrispasr and don't bleed into the public surface.
 # Symbols downstream consumers see are only the `crispasr_chat_*` ABI
 # from include/crispasr_chat.h. See docs/prompts/chat-abi.md.
-if (TARGET crispasr-llama-core)
-    target_link_libraries(crispasr-lib PRIVATE crispasr-llama-core)
-endif()
 
 install(TARGETS crispasr-lib LIBRARY)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../include/crispasr_chat.h

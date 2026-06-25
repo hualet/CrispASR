@@ -48,23 +48,23 @@
 // its own shared library — we link them into libwhisper privately so Dart
 // only has to open one library to reach every backend. Any missing header
 // in a slim build is skipped cleanly below.
-#if __has_include("parakeet.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("parakeet.h")
 #include "parakeet.h"
 #define CA_HAVE_PARAKEET 1
 #endif
-#if __has_include("nemotron.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("nemotron.h")
 #include "nemotron.h"
 #define CA_HAVE_NEMOTRON 1
 #endif
-#if __has_include("canary.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("canary.h")
 #include "canary.h"
 #define CA_HAVE_CANARY 1
 #endif
-#if __has_include("lfm2_audio.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("lfm2_audio.h")
 #include "lfm2_audio.h"
 #define CA_HAVE_LFM2_AUDIO 1
 #endif
-#if __has_include("mini_omni2.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("mini_omni2.h")
 #include "mini_omni2.h"
 #define CA_HAVE_MINI_OMNI2 1
 #endif
@@ -72,219 +72,219 @@
 #include "qwen3_asr.h"
 #define CA_HAVE_QWEN3 1
 #endif
-#if __has_include("higgs_stt.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("higgs_stt.h")
 #include "higgs_stt.h"
 #define CA_HAVE_HIGGS_STT 1
 #endif
-#if __has_include("cohere.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("cohere.h")
 #include "cohere.h"
 #define CA_HAVE_COHERE 1
 #endif
-#if __has_include("granite_speech.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("granite_speech.h")
 #include "granite_speech.h"
 #define CA_HAVE_GRANITE 1
 #endif
-#if __has_include("granite_nle.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("granite_nle.h")
 #include "granite_nle.h"
 #define CA_HAVE_GRANITE_NLE 1
 #endif
-#if __has_include("funasr.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("funasr.h")
 #include "funasr.h"
 #define CA_HAVE_FUNASR 1
 #endif
-#if __has_include("paraformer.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("paraformer.h")
 #include "paraformer.h"
 #define CA_HAVE_PARAFORMER 1
 #endif
-#if __has_include("sensevoice.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("sensevoice.h")
 #include "sensevoice.h"
 #define CA_HAVE_SENSEVOICE 1
 #endif
-#if __has_include("canary_ctc.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("canary_ctc.h")
 #include "canary_ctc.h"
 #define CA_HAVE_CTC 1
 #endif
-#if __has_include("voxtral.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("voxtral.h")
 #include "voxtral.h"
 #define CA_HAVE_VOXTRAL 1
 #endif
-#if __has_include("voxtral4b.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("voxtral4b.h")
 #include "voxtral4b.h"
 #define CA_HAVE_VOXTRAL4B 1
 #endif
-#if __has_include("wav2vec2-ggml.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("wav2vec2-ggml.h")
 #include "wav2vec2-ggml.h"
 #define CA_HAVE_WAV2VEC2 1
 #endif
-#if __has_include("vibevoice.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("vibevoice.h")
 #include "vibevoice.h"
 #define CA_HAVE_VIBEVOICE 1
 #endif
-#if __has_include("kugelaudio.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("kugelaudio.h")
 #include "kugelaudio.h"
 #define CA_HAVE_KUGELAUDIO 1
 #endif
-#if __has_include("zonos_tts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("zonos_tts.h")
 #include "zonos_tts.h"
 #define CA_HAVE_ZONOS 1
 #endif
-#if __has_include("qwen3_tts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("qwen3_tts.h")
 #include "qwen3_tts.h"
 #define CA_HAVE_QWEN3_TTS 1
 #endif
-#if __has_include("kokoro.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("kokoro.h")
 #include "kokoro.h"
 #define CA_HAVE_KOKORO 1
 #endif
-#if __has_include("piper_tts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("piper_tts.h")
 #include "piper_tts.h"
 #define CA_HAVE_PIPER 1
 #endif
-#if __has_include("melotts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("melotts.h")
 #include "melotts.h"
 #define CA_HAVE_MELOTTS 1
 #endif
-#if __has_include("chatterbox.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("chatterbox.h")
 #include "chatterbox.h"
 #define CA_HAVE_CHATTERBOX 1
 #endif
-#if __has_include("outetts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("outetts.h")
 #include "outetts.h"
 #define CA_HAVE_OUTETTS 1
 #endif
-#if __has_include("csm_tts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("csm_tts.h")
 #include "csm_tts.h"
 #define CA_HAVE_CSM 1
 #endif
-#if __has_include("dia_tts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("dia_tts.h")
 #include "dia_tts.h"
 #define CA_HAVE_DIA 1
 #endif
-#if __has_include("dots_tts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("dots_tts.h")
 #include "dots_tts.h"
 #define CA_HAVE_DOTS_TTS 1
 #endif
-#if __has_include("pocket_tts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("pocket_tts.h")
 #include "pocket_tts.h"
 #define CA_HAVE_POCKET 1
 #endif
-#if __has_include("fastpitch_tts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("fastpitch_tts.h")
 #include "fastpitch_tts.h"
 #define CA_HAVE_FASTPITCH 1
 #endif
-#if __has_include("parler_tts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("parler_tts.h")
 #include "parler_tts.h"
 #define CA_HAVE_PARLER 1
 #endif
-#if __has_include("speecht5_tts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("speecht5_tts.h")
 #include "speecht5_tts.h"
 #define CA_HAVE_SPEECHT5 1
 #endif
-#if __has_include("bark_tts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("bark_tts.h")
 #include "bark_tts.h"
 #define CA_HAVE_BARK 1
 #endif
-#if __has_include("parler_tts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("parler_tts.h")
 #include "parler_tts.h"
 #define CA_HAVE_PARLER_TTS 1
 #endif
-#if __has_include("voxcpm2_tts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("voxcpm2_tts.h")
 #include "voxcpm2_tts.h"
 #define CA_HAVE_VOXCPM2 1
 #endif
-#if __has_include("cosyvoice3_tts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("cosyvoice3_tts.h")
 #include "cosyvoice3_tts.h"
 #define CA_HAVE_COSYVOICE3 1
 #endif
-#if __has_include("indextts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("indextts.h")
 #include "indextts.h"
 #define CA_HAVE_INDEXTTS 1
 #endif
-#if __has_include("f5_tts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("f5_tts.h")
 #include "f5_tts.h"
 #define CA_HAVE_F5TTS 1
 #endif
-#if __has_include("m2m100.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("m2m100.h")
 #include "m2m100.h"
 #define CA_HAVE_M2M100 1
 #endif
-#if __has_include("t5_translate.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("t5_translate.h")
 #include "t5_translate.h"
 #define CA_HAVE_T5_TRANSLATE 1
 #endif
-#if __has_include("orpheus.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("orpheus.h")
 #include "orpheus.h"
 #define CA_HAVE_ORPHEUS 1
 #endif
-#if __has_include("tada_tts.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("tada_tts.h")
 #include "tada_tts.h"
 #define CA_HAVE_TADA 1
 #endif
-#if __has_include("mimo_asr.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("mimo_asr.h")
 #include "mimo_asr.h"
 #define CA_HAVE_MIMO_ASR 1
 #endif
-#if __has_include("ark_asr.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("ark_asr.h")
 #include "ark_asr.h"
 #define CA_HAVE_ARK_ASR 1
 #endif
-#if __has_include("moss_audio.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("moss_audio.h")
 #include "moss_audio.h"
 #define CA_HAVE_MOSS_AUDIO 1
 #endif
-#if __has_include("moss_transcribe.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("moss_transcribe.h")
 #include "moss_transcribe.h"
 #define CA_HAVE_MOSS_TRANSCRIBE 1
 #endif
-#if __has_include("glm_asr.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("glm_asr.h")
 #include "glm_asr.h"
 #define CA_HAVE_GLMASR 1
 #endif
-#if __has_include("kyutai_stt.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("kyutai_stt.h")
 #include "kyutai_stt.h"
 #define CA_HAVE_KYUTAI 1
 #endif
-#if __has_include("firered_asr.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("firered_asr.h")
 #include "firered_asr.h"
 #define CA_HAVE_FIRERED 1
 #endif
-#if __has_include("moonshine.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("moonshine.h")
 #include "moonshine.h"
 #define CA_HAVE_MOONSHINE 1
 #endif
-#if __has_include("omniasr.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("omniasr.h")
 #include "omniasr.h"
 #define CA_HAVE_OMNIASR 1
 #endif
-#if __has_include("moonshine_streaming.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("moonshine_streaming.h")
 #include "moonshine_streaming.h"
 #define CA_HAVE_MOONSHINE_STREAMING 1
 #endif
-#if __has_include("gemma4_e2b.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("gemma4_e2b.h")
 #include "gemma4_e2b.h"
 #define CA_HAVE_GEMMA4_E2B 1
 #endif
-#if __has_include("fireredpunc.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("fireredpunc.h")
 #include "fireredpunc.h"
 #define CA_HAVE_FIREREDPUNC 1
 #endif
-#if __has_include("truecaser.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("truecaser.h")
 #include "truecaser.h"
 #define CA_HAVE_TRUECASER 1
 #endif
-#if __has_include("truecaser_lstm.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("truecaser_lstm.h")
 #include "truecaser_lstm.h"
 #define CA_HAVE_TRUECASER_LSTM 1
 #endif
-#if __has_include("truecaser_crf.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("truecaser_crf.h")
 #include "truecaser_crf.h"
 #define CA_HAVE_TRUECASER_CRF 1
 #endif
-#if __has_include("pcs.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("pcs.h")
 #include "pcs.h"
 #define CA_HAVE_PCS 1
 #endif
-#if __has_include("titanet.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("titanet.h")
 #include "titanet.h"
 #include "speaker_db.h"
 #define CA_HAVE_TITANET 1
@@ -886,19 +886,19 @@ CA_EXPORT crispasr_stream* crispasr_stream_open(whisper_context* ctx, int n_thre
 CA_EXPORT void crispasr_stream_close(crispasr_stream* s) {
     if (!s)
         return;
-#if __has_include("kyutai_stt.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("kyutai_stt.h")
     if (s->kyutai_stream_state) {
         kyutai_stt_stream_close((kyutai_stt_stream*)s->kyutai_stream_state);
         s->kyutai_stream_state = nullptr;
     }
 #endif
-#if __has_include("moonshine_streaming.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("moonshine_streaming.h")
     if (s->moonshine_streaming_state) {
         moonshine_streaming_stream_close((moonshine_streaming_stream*)s->moonshine_streaming_state);
         s->moonshine_streaming_state = nullptr;
     }
 #endif
-#if __has_include("voxtral4b.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("voxtral4b.h")
     if (s->voxtral4b_stream_state) {
         voxtral4b_stream_close((voxtral4b_stream*)s->voxtral4b_stream_state);
         s->voxtral4b_stream_state = nullptr;
@@ -985,18 +985,18 @@ static int crispasr_stream_run_decode(crispasr_stream* s) {
 CA_EXPORT int crispasr_stream_feed(crispasr_stream* s, const float* pcm, int n_samples) {
     if (!s || !pcm || n_samples <= 0)
         return -1;
-#if __has_include("kyutai_stt.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("kyutai_stt.h")
     if (s->kyutai_stream_state) {
         return kyutai_stt_stream_feed((kyutai_stt_stream*)s->kyutai_stream_state, pcm, n_samples);
     }
 #endif
-#if __has_include("moonshine_streaming.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("moonshine_streaming.h")
     if (s->moonshine_streaming_state) {
         return moonshine_streaming_stream_feed((moonshine_streaming_stream*)s->moonshine_streaming_state, pcm,
                                                n_samples);
     }
 #endif
-#if __has_include("voxtral4b.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("voxtral4b.h")
     if (s->voxtral4b_stream_state) {
         return voxtral4b_stream_feed((voxtral4b_stream*)s->voxtral4b_stream_state, pcm, n_samples);
     }
@@ -1017,19 +1017,19 @@ CA_EXPORT int crispasr_stream_get_text(crispasr_stream* s, char* out_text, int o
                                        double* out_t1_s, int64_t* out_counter) {
     if (!s || !out_text || out_cap <= 0)
         return -1;
-#if __has_include("kyutai_stt.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("kyutai_stt.h")
     if (s->kyutai_stream_state) {
         return kyutai_stt_stream_get_text((kyutai_stt_stream*)s->kyutai_stream_state, out_text, out_cap, out_t0_s,
                                           out_t1_s, out_counter);
     }
 #endif
-#if __has_include("moonshine_streaming.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("moonshine_streaming.h")
     if (s->moonshine_streaming_state) {
         return moonshine_streaming_stream_get_text((moonshine_streaming_stream*)s->moonshine_streaming_state, out_text,
                                                    out_cap, out_t0_s, out_t1_s, out_counter);
     }
 #endif
-#if __has_include("voxtral4b.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("voxtral4b.h")
     if (s->voxtral4b_stream_state) {
         return voxtral4b_stream_get_text((voxtral4b_stream*)s->voxtral4b_stream_state, out_text, out_cap, out_t0_s,
                                          out_t1_s, out_counter);
@@ -1062,17 +1062,17 @@ CA_EXPORT int crispasr_stream_get_text(crispasr_stream* s, char* out_text, int o
 CA_EXPORT int crispasr_stream_flush(crispasr_stream* s) {
     if (!s)
         return -1;
-#if __has_include("kyutai_stt.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("kyutai_stt.h")
     if (s->kyutai_stream_state) {
         return kyutai_stt_stream_flush((kyutai_stt_stream*)s->kyutai_stream_state);
     }
 #endif
-#if __has_include("moonshine_streaming.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("moonshine_streaming.h")
     if (s->moonshine_streaming_state) {
         return moonshine_streaming_stream_flush((moonshine_streaming_stream*)s->moonshine_streaming_state);
     }
 #endif
-#if __has_include("voxtral4b.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("voxtral4b.h")
     if (s->voxtral4b_stream_state) {
         return voxtral4b_stream_flush((voxtral4b_stream*)s->voxtral4b_stream_state);
     }
@@ -1089,7 +1089,7 @@ CA_EXPORT int crispasr_stream_flush(crispasr_stream* s) {
 CA_EXPORT void crispasr_stream_set_live_decode(crispasr_stream* s, int enabled) {
     if (!s)
         return;
-#if __has_include("voxtral4b.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("voxtral4b.h")
     if (s->voxtral4b_stream_state) {
         voxtral4b_stream_set_live_decode((voxtral4b_stream*)s->voxtral4b_stream_state, enabled);
     }
@@ -6887,7 +6887,7 @@ CA_EXPORT crispasr_stream* crispasr_session_stream_open(crispasr_session* s, int
         return nullptr;
     if (s->whisper_ctx)
         return crispasr_stream_open(s->whisper_ctx, n_threads, step_ms, length_ms, keep_ms, language, translate);
-#if __has_include("kyutai_stt.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("kyutai_stt.h")
     if (s->kyutai_ctx) {
         // Chunked-batch over a rolling window — see PLAN #62c.
         // n_threads/keep_ms/language/translate are unused here: kyutai
@@ -6905,7 +6905,7 @@ CA_EXPORT crispasr_stream* crispasr_session_stream_open(crispasr_session* s, int
         return w;
     }
 #endif
-#if __has_include("moonshine_streaming.h")
+#if !defined(CRISPASR_QWEN3_ONLY) && __has_include("moonshine_streaming.h")
     if (s->moonshine_streaming_ctx) {
         // Same chunked-batch pattern as kyutai (PLAN #62c follow-on).
         // Despite the backend name, moonshine_streaming_transcribe is single-shot
@@ -7831,10 +7831,15 @@ CA_EXPORT int crispasr_session_set_tts_num_candidates(crispasr_session* s, int n
 CA_EXPORT int crispasr_session_set_g2p_dict(crispasr_session* s, const char* source) {
     if (!s)
         return -1;
+#ifdef CA_HAVE_PIPER
     // piper_tts_set_g2p_dict is process-global (not per-context) so call
     // it unconditionally — it affects the next phonemize_builtin() call.
     piper_tts_set_g2p_dict(source);
     return 0;
+#else
+    (void)source;
+    return -2;
+#endif
 }
 
 // Set the top-p nucleus-sampling threshold. Honoured by chatterbox;

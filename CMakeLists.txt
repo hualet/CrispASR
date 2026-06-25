@@ -91,6 +91,7 @@ option(CRISPASR_ALL_WARNINGS_3RD_PARTY "crispasr: enable all compiler warnings i
 # build
 option(CRISPASR_FATAL_WARNINGS  "crispasr: enable -Werror flag"               OFF)
 option(CRISPASR_USE_SYSTEM_GGML "crispasr: use system-installed GGML library" OFF)
+option(CRISPASR_QWEN3_ONLY      "crispasr: expose only the qwen3 C API backend" OFF)
 
 # sanitizers
 option(CRISPASR_SANITIZE_THREAD    "crispasr: enable thread sanitizer"    OFF)
