@@ -5667,8 +5667,8 @@ static bool whisper_vad_detect_speech_impl(struct whisper_vad_context* vctx, con
         n_chunks += 1; // Add one more chunk for remaining samples.
     }
 
-    CRISPASR_LOG_INFO("%s: detecting speech in %d samples\n", __func__, n_samples);
-    CRISPASR_LOG_INFO("%s: n_chunks: %d\n", __func__, n_chunks);
+    CRISPASR_LOG_DEBUG("%s: detecting speech in %d samples\n", __func__, n_samples);
+    CRISPASR_LOG_DEBUG("%s: n_chunks: %d\n", __func__, n_chunks);
 
     // Reset LSTM hidden/cell states (a continuation keeps them: the stream
     // VAD scores each new frame once, in order).
@@ -5676,7 +5676,7 @@ static bool whisper_vad_detect_speech_impl(struct whisper_vad_context* vctx, con
         ggml_backend_buffer_clear(vctx->buffer, 0);
 
     vctx->probs.resize(n_chunks);
-    CRISPASR_LOG_INFO("%s: props size: %u\n", __func__, n_chunks);
+    CRISPASR_LOG_DEBUG("%s: probs size: %u\n", __func__, n_chunks);
 
     // Use pre-allocated window buffer to avoid per-call heap allocation
     // that fragments memory across repeated server requests (#132).
@@ -5735,7 +5735,7 @@ static bool whisper_vad_detect_speech_impl(struct whisper_vad_context* vctx, con
         const int chunk_len = idx_end - idx_start;
 
         if (chunk_len < vctx->n_window) {
-            CRISPASR_LOG_INFO("%s: chunk_len: %d < n_window: %d\n", __func__, chunk_len, vctx->n_window);
+            CRISPASR_LOG_DEBUG("%s: chunk_len: %d < n_window: %d\n", __func__, chunk_len, vctx->n_window);
             // Zero-pad the last partial chunk directly into window.
             std::copy(samples + idx_start, samples + idx_end, window.begin() + carry);
             std::fill(window.begin() + carry + chunk_len, window.end(), 0.0f);
@@ -5750,7 +5750,9 @@ static bool whisper_vad_detect_speech_impl(struct whisper_vad_context* vctx, con
         // Direct graph compute — no scheduler, no threadpool churn.
         if (core_cpu_backend::compute_planned(gf, &cplan, 1) != GGML_STATUS_SUCCESS) {
             CRISPASR_LOG_ERROR("%s: failed to compute VAD graph\n", __func__);
-            break;
+            vctx->probs.clear();
+            ggml_backend_sched_reset(sched);
+            return false;
         }
 
         // Get the probability for this chunk.
@@ -5763,7 +5765,7 @@ static bool whisper_vad_detect_speech_impl(struct whisper_vad_context* vctx, con
 
     const int64_t t_this_vad = ggml_time_us() - t_start_vad_us;
     vctx->t_vad_us = t_this_vad; // per-call only, not accumulated (#132)
-    CRISPASR_LOG_INFO("%s: vad time = %.2f ms processing %d samples\n", __func__, 1e-3f * t_this_vad, n_samples);
+    CRISPASR_LOG_DEBUG("%s: vad time = %.2f ms processing %d samples\n", __func__, 1e-3f * t_this_vad, n_samples);
 
     ggml_backend_sched_reset(sched);
 
@@ -5804,7 +5806,7 @@ float* whisper_vad_probs(struct whisper_vad_context* vctx) {
 
 struct whisper_vad_segments* whisper_vad_segments_from_probs(struct whisper_vad_context* vctx,
                                                              whisper_vad_params params) {
-    CRISPASR_LOG_INFO("%s: detecting speech timestamps using %d probabilities\n", __func__, whisper_vad_n_probs(vctx));
+    CRISPASR_LOG_DEBUG("%s: detecting speech timestamps using %d probabilities\n", __func__, whisper_vad_n_probs(vctx));
 
     int n_probs = whisper_vad_n_probs(vctx);
     float* probs = whisper_vad_probs(vctx);
@@ -5970,7 +5972,7 @@ struct whisper_vad_segments* whisper_vad_segments_from_probs(struct whisper_vad_
         }
     }
 
-    CRISPASR_LOG_INFO("%s: Final speech segments after filtering: %d\n", __func__, (int)speeches.size());
+    CRISPASR_LOG_DEBUG("%s: Final speech segments after filtering: %d\n", __func__, (int)speeches.size());
 
     // Allocate final segments
     std::vector<whisper_vad_segment> segments;
@@ -6018,7 +6020,7 @@ struct whisper_vad_segments* whisper_vad_segments_from_probs(struct whisper_vad_
         segments[i].start = samples_to_cs(speeches[i].start);
         segments[i].end = samples_to_cs(speeches[i].end);
 
-        CRISPASR_LOG_INFO("%s: VAD segment %d: start = %.2f, end = %.2f (duration: %.2f)\n", __func__, i,
+        CRISPASR_LOG_DEBUG("%s: VAD segment %d: start = %.2f, end = %.2f (duration: %.2f)\n", __func__, i,
                           segments[i].start / 100.0, segments[i].end / 100.0,
                           (segments[i].end - segments[i].start) / 100.0);
     }
