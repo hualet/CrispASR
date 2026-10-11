@@ -9370,7 +9370,12 @@ CA_EXPORT int crispasr_session_set_voice(crispasr_session* s, const char* path, 
     // cosyvoice3 loaded, `path` is usually an entry name inside voices.gguf
     // rather than a file, and every entry in that bundle is a baked clone.
     const crispasr_voice::CloneDecision voice_decision = crispasr_voice::classify_voice(
-        path, /*voice_dir=*/std::string(), /*baked_from_wav_this_run=*/false, s->cosyvoice3_voices_path);
+        path, /*voice_dir=*/std::string(), /*baked_from_wav_this_run=*/false,
+#ifdef CA_HAVE_COSYVOICE3
+        s->cosyvoice3_voices_path);
+#else
+        std::string());
+#endif
     s->voice_is_clone = voice_decision.is_clone;
     s->voice_pack_identity = voice_decision.pack_identity;
     s->voice_path = path;
@@ -9806,10 +9811,14 @@ CA_EXPORT void crispasr_session_set_tts_pad_silence_ms(crispasr_session* s, int 
 CA_EXPORT int crispasr_session_set_tts_phonemes(crispasr_session* s, const char* phonemes) {
     if (!s)
         return -1;
+#ifdef CA_HAVE_KOKORO
     s->tts_phonemes = phonemes ? phonemes : "";
     if (s->tts_phonemes.empty())
         return 0;
     return (s->backend == "kokoro" || s->backend == "piper") ? 0 : -2;
+#else
+    return (phonemes && *phonemes) ? -2 : 0;
+#endif
 }
 
 CA_EXPORT int crispasr_session_set_speaker_name(crispasr_session* s, const char* name) {
@@ -13278,8 +13287,13 @@ CA_EXPORT int crispasr_session_set_g2p_dict(crispasr_session* s, const char* sou
         return -1;
     // piper_tts_set_g2p_dict is process-global (not per-context) so call
     // it unconditionally — it affects the next phonemize_builtin() call.
+#ifdef CA_HAVE_PIPER
     piper_tts_set_g2p_dict(source);
     return 0;
+#else
+    (void)source;
+    return -2;
+#endif
 }
 
 // Set the top-p nucleus-sampling threshold. Honoured by chatterbox;
