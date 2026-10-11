@@ -1076,7 +1076,7 @@ endif()
 # own hand-rolled ggml graph builders and intentionally do NOT link this
 # target; they stay free of the per-architecture llama-model code.
 # ---------------------------------------------------------------------------
-set(LLAMA_CORE_DIR ${CMAKE_SOURCE_DIR}/examples/talk-llama)
+set(LLAMA_CORE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../examples/talk-llama)
 file(GLOB LLAMA_CORE_MODELS CONFIGURE_DEPENDS ${LLAMA_CORE_DIR}/models/*.cpp)
 add_library(crispasr-llama-core STATIC
             ${LLAMA_CORE_DIR}/llama.cpp
