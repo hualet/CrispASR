@@ -1298,7 +1298,7 @@ static ggml_cgraph* qwen3_asr_build_graph_llm_kv(qwen3_asr_context* ctx, int n_p
         /*rope_beta_slow*/ 1.0f,
         /*attn_scale*/ attn_scale,
         /*qk_norm_eps*/ eps,
-        /*gqa_mode*/ core_attn::GQA_MANUAL_CONT,
+        /*gqa_mode*/ core_attn::GQA_NATIVE,
     };
 
     for (uint32_t il = 0; il < hp.llm_n_layers; il++) {
