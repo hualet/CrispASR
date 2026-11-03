@@ -3,7 +3,7 @@
 
 # Feature matrix
 
-All 140 backends compiled into the `crispasr` binary, with their declared capability bits. For an interactive sortable/filterable view, open [`feature-matrix.html`](https://htmlpreview.github.io/?https://github.com/CrispStrobe/CrispASR/blob/main/docs/feature-matrix.html).
+All 144 backends compiled into the `crispasr` binary, with their declared capability bits. For an interactive sortable/filterable view, open [`feature-matrix.html`](https://htmlpreview.github.io/?https://github.com/CrispStrobe/CrispASR/blob/main/docs/feature-matrix.html).
 
 | Backend | TTS | Voice cloning | Translate | Src/Tgt language | Language detect | Auto-download | Timestamps (native) | Timestamps (CTC) | Word timestamps | Token confidence | Temperature | Beam search | Punctuation toggle | Flash attention | Diarize | GBNF grammar | VAD (internal) | Parallel processors | Beats | Chords | Piano | Pitch | Punctuation Native | S2S | Separate | Streaming | Tab | TTS Speed |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -44,6 +44,8 @@ All 140 backends compiled into the `crispasr` binary, with their declared capabi
 | `kugelaudio` | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | `qwen3-tts` | ✓ | ✓ |  | ✓ |  | ✓ |  |  |  |  | ✓ |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  | ✓ |  |  |
 | `miotts` | ✓ |  |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| `arktts` | ✓ |  |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| `audio8-tts` | ✓ |  |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | `bt2-tts` | ✓ | ✓ |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | `piano-transcription` |  |  |  |  |  | ✓ | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  | ✓ |  |  |  |  |  |  |  |
 | `basic-pitch` |  |  |  |  |  | ✓ | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  | ✓ |  |  |  |  |  |  |  |
@@ -67,10 +69,10 @@ All 140 backends compiled into the `crispasr` binary, with their declared capabi
 | `chatterbox-finnish-nano` | ✓ | ✓ |  | ✓ |  | ✓ |  |  |  |  | ✓ |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | `kartoffelbox-turbo` | ✓ | ✓ |  | ✓ |  | ✓ |  |  |  |  | ✓ |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | `lahgtna-chatterbox` | ✓ | ✓ |  | ✓ |  | ✓ |  |  |  |  | ✓ |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| `tada` | ✓ |  |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| `tada-1b` | ✓ |  |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| `tada-tts-1b` | ✓ |  |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| `tada-3b-ml` | ✓ |  |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| `tada` | ✓ | ✓ |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| `tada-1b` | ✓ | ✓ |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| `tada-tts-1b` | ✓ | ✓ |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| `tada-3b-ml` | ✓ | ✓ |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | `indextts` | ✓ | ✓ |  |  |  | ✓ |  |  |  |  | ✓ |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | `f5-tts` | ✓ | ✓ |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | `raon` | ✓ | ✓ |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
@@ -125,7 +127,7 @@ All 140 backends compiled into the `crispasr` binary, with their declared capabi
 | `speecht5` | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | `dia` | ✓ |  |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | `dia-tts` | ✓ |  |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| `dots-tts` | ✓ |  |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| `dots-tts` | ✓ | ✓ |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | `fireredtts3` | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | `confucius4-tts` | ✓ | ✓ |  |  |  | ✓ |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | `irodori-tts` | ✓ | ✓ |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
@@ -142,10 +144,12 @@ All 140 backends compiled into the `crispasr` binary, with their declared capabi
 | `omnivoice-singing` | ✓ | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | `htdemucs` |  |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | ✓ |  |  |  |
 | `mel-band-roformer` |  |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | ✓ |  |  |  |
+| `mini-bs-roformer` |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | ✓ |  |  |  |
 | `crepe` |  |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | ✓ |  |  |  |  |  |  |
 | `btc-chords` |  |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |
 | `tabcnn` |  |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | ✓ |  |
 | `rvc-svc` |  |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| `meanvc2` |  |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | ✓ |  |  |  |  |
 | `beat-this` |  |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |  |  |  | ✓ |  |  |  |  |  |  |  |  |  |
 
 ## What each capability means
